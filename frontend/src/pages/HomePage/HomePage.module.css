@@ -1,0 +1,93 @@
+.hero {
+    min-height: 50vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.3)
+        ),
+        url('/car in carwash.jpg')
+    ;
+
+    background-size: cover;
+    background-position: 50% 90%;
+
+    color: white;
+}
+
+.content {
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 64px;
+}
+
+.content a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 22px;
+    background-color: white;
+    color: black;
+    border-radius: 12px;
+}
+
+.tgblock {
+    width: 90%;
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 30px 24px;
+    background-color: #f8faff;
+
+    border: 2px dashed rgb(77, 134, 255);
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(77, 134, 255, 0.3);
+}
+
+.tgtext {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333333;
+    margin: 0 0 20px 0;
+    font-weight: 500;
+}
+
+.tgButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    padding: 14px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgb(77, 134, 255);
+
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(77, 134, 255, 0.3);
+
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+.tgbutton:hover {
+    background: rgb(50, 110, 240);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(77, 134, 255, 0.4);
+}
+
+.tgbutton:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(77, 134, 255, 0.3);
+}

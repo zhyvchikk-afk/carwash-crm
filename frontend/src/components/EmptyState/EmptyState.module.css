@@ -1,0 +1,19 @@
+.empty {
+    background-color: #fff;
+    border: 1px dashed #d1d5db;
+    border-radius: 16px;
+
+    padding: 40px;
+
+    text-align: center;
+}
+
+.title {
+    margin-bottom: 12px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.description {
+    color: #6b7280;
+}

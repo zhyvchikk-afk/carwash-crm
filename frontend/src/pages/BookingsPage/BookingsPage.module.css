@@ -1,0 +1,115 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.createLink {
+    padding: 10px 16px;
+    border-radius: 10px;
+    background-color: #111827;
+    color: #ffffff;
+}
+
+.error {
+    color: #dc2626;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.service {
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.cancelButton {
+    height: fit-content;
+    border: none;
+    background: none;
+    color: #dc2626;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.servicesList {
+    margin: 10px 0;
+    padding-left: 0;
+    list-style: none;    
+}
+
+.serviceItem {
+    margin-bottom: 6px;
+    color: #374152;
+}
+
+.statuspending,
+.statusconfirmed,
+.statuscompleted,
+.statuscancelled {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.statuspending {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.statusconfirmed {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.statuscompleted {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.statuscancelled {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 20px 0;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.searchInput {
+    outline: none;
+    border-color: #2563eb;
+}

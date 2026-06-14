@@ -1,0 +1,80 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.categoryTitle {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minimax(280px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.serviceTitle {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.description {
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.duration {
+    color: #111827;
+    font-weight: 600;
+}
+
+.prices {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-top: 8px;
+}
+
+.priceRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 10px 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.error {
+    color: #dc2626;
+}
