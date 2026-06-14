@@ -353,6 +353,20 @@ class BookingViewSet(viewsets.ModelViewSet):
                 message,
             )
 
+        if booking.user.telegram_chat_id:
+            message = (
+                "🆕 Ваш запис успішно створено!\n\n"
+                f"📅 Дата: {booking.date}\n"
+                f"🕒 Час: {booking.start_time} - {booking.end_time}\n"
+                f"🚗 Авто: {booking.car.brand} {booking.car.model}\n\n"
+                "⏳ Очікуйте на підтвердження адміністратором."
+            )
+
+            send_telegram_sync(
+                booking.user.telegram_chat_id,
+                message,
+            )
+
 
 
     
