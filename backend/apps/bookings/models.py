@@ -42,6 +42,9 @@ class Booking(models.Model):
     comment = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    reminder_sent = models.BooleanField(
+        default=False,
+    )
 
     @property
     def total_duration(self):

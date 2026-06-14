@@ -72,7 +72,7 @@ async def start_handler(message: Message):
     try:
         user = await sync_to_async(User.objects.get)(id=user_id)
 
-        if user.telegram_chat_id:
+        if user.telegram_chat_id == message.from_user.id:
             await message.answer(
                 '✅ Телеграм уже підключено до Вашого акаунта.'
             )
