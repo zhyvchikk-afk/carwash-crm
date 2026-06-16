@@ -13,6 +13,7 @@ import CreateBookingPage from "./pages/CreateBookingPage/CreateBookingPage";
 import AdminBookingsPage from "./pages/AdminBookingsPage/AdminBookingsPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage/AdminDashboardPage";
 import CalendarPage from "./pages/CalendarPage/CalendarPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 
 function App() {
@@ -23,6 +24,15 @@ function App() {
         <Route path="/services" element={<ServicesPage />}/>
         <Route path="/login" element={<LoginPage />}/>
         <Route path="/register" element={<RegisterPage />}/>
+        
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
         
         <Route
           path="/cars"

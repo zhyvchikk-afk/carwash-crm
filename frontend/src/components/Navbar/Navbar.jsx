@@ -46,16 +46,14 @@ function Navbar() {
                         {(user?.role === 'admin' ||
                             user?.role === 'manager') ? (
                             <>
-                            <Link to='/admin/bookings'>Адмін</Link>
+                            <Link to='/admin/bookings'>Керування</Link>
                             <Link to='/admin/dashboard'>Статистика</Link>
                             <Link to='/admin/calendar'>Календар</Link>
                             </>
                             ) : (
-                            <span
-                                className={styles.user}
-                            >
-                                {user?.username}
-                            </span>
+                            <Link to='/profile'>
+                                Мій профіль
+                            </Link>
                         )}
                         </>
                             

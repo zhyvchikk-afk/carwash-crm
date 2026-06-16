@@ -25,7 +25,9 @@ class UserSerializer(serializers.ModelSerializer):
         # Поля тільки для читання(безпека)
         read_only_fields = (
             'id',
+            'username',
             'role',
+            'telegram_chat_id',
             'created_at',
             'updated_at',
         )
