@@ -10,6 +10,8 @@ urlpatterns = [
     path('api/', include('apps.services.urls')),
     path('api/', include('apps.cars.urls')),
     path('api/', include('apps.bookings.urls')),
+    path('api/', include('apps.core.urls')),
+    path('api/', include('apps.reviews.urls')),
 ]
 
 if settings.DEBUG:

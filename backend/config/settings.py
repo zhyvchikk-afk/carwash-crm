@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'apps.cars.apps.CarsConfig',
     'apps.bookings.apps.BookingsConfig',
     'apps.schedule.apps.ScheduleConfig',
+    'apps.core.apps.CoreConfig',
+    'apps.reviews.apps.ReviewsConfig',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +149,16 @@ SIMPLE_JWT = {
 
     'BLACKLIST_AFTER_ROTATION': False,
 }
+
+EMAIL_BACKEND = (
+    'django.core.mail.backends.smtp.EmailBackend'
+)
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+FRONTEND_URL = config('FRONTEND_URL')

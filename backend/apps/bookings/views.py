@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from django.db.models import Sum, Avg, Count, Q
 from django.db.models.functions import TruncMonth, TruncDay
 from django.utils.timezone import now
@@ -10,7 +10,7 @@ from rest_framework.decorators import action, api_view
 from rest_framework.filters import SearchFilter
 
 from apps.bookings.models import Booking
-from apps.bookings.serializers import BookingSerializer
+from apps.bookings.serializers import BookingSerializer, RescheduleBookingSerializer
 from apps.schedule.models import DayOff, WorkingDay
 from apps.services.models import Service
 from apps.cars.models import Car
@@ -488,6 +488,134 @@ class BookingViewSet(viewsets.ModelViewSet):
         )
 
         return Response(serializer.data)
+    
+    
+    @action(
+        detail=True,
+        methods=['patch'],
+        url_path='reschedule',
+    )
+    def reschedule(self, request, pk=None):
+        booking = self.get_object()
+
+        user = request.user
+
+        if (
+            booking.user != user
+            and not (
+                user.role in ['admin', 'manager']
+                or user.is_staff
+            )
+        ):
+            return Response(
+                {
+                    'detail': 'Ви не можете перенести цей запис.'
+                },
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        duration = (
+            datetime.combine(
+                date.today(),
+                booking.end_time,
+            )
+            -
+            datetime.combine(
+                date.today(),
+                booking.start_time,
+            )
+        )
+
+        serializer = (RescheduleBookingSerializer(
+            data=request.data
+        ))
+
+        serializer.is_valid(
+            raise_exception=True
+        )
+
+        new_date = serializer.validated_data['date']
+        new_start_time = serializer.validated_data['start_time']
+
+        new_end_time = (
+            datetime.combine(
+                date.today(),
+                new_start_time,
+            )
+            + duration
+        ).time()
+
+        conflict = (
+            Booking.objects
+            .exclude(pk=booking.pk)
+            .filter(
+                date=new_date,
+                start_time__lt=new_end_time,
+                end_time__gt=new_start_time,
+            )
+            .exists()
+        )
+
+        if conflict:
+            return Response(
+                {
+                    'detail': ('На цей час вже існує запис.')
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        booking.date = new_date
+        booking.start_time = new_start_time
+        booking.end_time = new_end_time
+
+        booking.save()
+
+        if booking.user.telegram_chat_id:
+            message = (
+                "📅 Ваш запис було перенесено!\n\n"
+                f"🚗 Авто: "
+                f"{booking.car.brand} "
+                f"{booking.car.model}\n"
+                f"📅 Нова дата: {booking.date}\n"
+                f"🕒 Новий час: "
+                f"{booking.start_time} - "
+                f"{booking.end_time}\n\n"
+                "До зустрічі! 🚗✨"
+            )
+
+            send_telegram_sync(
+                booking.user.telegram_chat_id,
+                message,
+            )
+
+        admin = User.objects.filter(
+            role=User.Role.ADMIN,
+            telegram_chat_id__isnull=False,
+        ).first()
+
+        if admin:
+            message = (
+                "🔄 Запис було перенесено!\n\n"
+                f"👤 Клієнт: {booking.user.username}\n"
+                f"🚗 Авто: "
+                f"{booking.car.brand} "
+                f"{booking.car.model}\n"
+                f"📅 Нова дата: {booking.date}\n"
+                f"🕒 Новий час: "
+                f"{booking.start_time} - "
+                f"{booking.end_time}"
+            )
+
+            send_telegram_sync(
+                admin.telegram_chat_id,
+                message,
+            )
+
+        serializer = self.get_serializer(booking)
+
+        return Response(
+            serializer.data
+        )
 
     
 class AvailableSlotsView(APIView):
@@ -625,4 +753,3 @@ class AvailableSlotsView(APIView):
             }
         )
     
-

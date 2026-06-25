@@ -3,6 +3,17 @@ from apps.users.models import User # Імпорт моделі користув�
 import re
 
 class UserSerializer(serializers.ModelSerializer):
+        
+    def validate_email(self, value):
+        value = value.strip()
+
+        if not value:
+            raise serializers.ValidationError(
+                'Email є обов\'язковим полем'
+            )
+        
+        return value
+    
     #Налаштування серіалізера
     class Meta:
         #Модель з якою працює
@@ -38,6 +49,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         required=True,
         allow_blank=False,
     )
+    email = serializers.EmailField(
+        required=True,
+        allow_blank=False,
+    )
     password = serializers.CharField(
         write_only=True, # Сервер ніколи не поверне пароль в Джейсон
         min_length=8,
@@ -46,6 +61,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         write_only=True,
         min_length=8,
     )
+
 
     class Meta:
         model = User
@@ -102,3 +118,61 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+    
+
+class ChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(
+        write_only=True,
+        required=True,
+    )
+    new_password = serializers.CharField(
+        write_only=True,
+        required=True,
+        min_length=8,
+    )
+    new_password_confirm = serializers.CharField(
+        write_only=True,
+        required=True,
+        min_length=8,
+    )
+
+    def validate(self, attrs):
+        if (
+            attrs['new_password'] != attrs['new_password_confirm']
+        ):
+            raise serializers.ValidationError(
+                {
+                    'new_password_confirm': 'Паролі не співпадають.'
+                }
+            )
+        
+        return attrs
+    
+class ForgotPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField(
+        required=True,
+    )
+
+class ResetPasswordSerializer(serializers.Serializer):
+    uid = serializers.CharField()
+    token = serializers.CharField()
+    new_password = serializers.CharField(
+        min_length=8,
+        write_only=True,
+    )
+    new_password_confirm = serializers.CharField(
+        min_length=8,
+        write_only=True,
+    )
+
+    def validate(self, attrs):
+        if (
+            attrs['new_password'] != attrs['new_password_confirm']
+        ):
+            raise serializers.ValidationError(
+                {
+                    'new_password_confirm': 'Паролі не співпадають.'
+                }
+            )
+        
+        return attrs

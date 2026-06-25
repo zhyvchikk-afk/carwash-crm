@@ -9,8 +9,7 @@ class User(AbstractUser):
         ADMIN = 'admin', 'Admin'
 
     email = models.EmailField(
-        blank=True,
-        null=True,
+        unique=True,
     )
     phone = models.CharField(
         max_length=20,

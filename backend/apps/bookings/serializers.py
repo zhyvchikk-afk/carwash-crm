@@ -35,6 +35,10 @@ class BookingSerializer(serializers.ModelSerializer):
         source='user.phone',
         read_only=True,
     )
+    has_review = serializers.SerializerMethodField()
+
+
+
     class Meta:
         model = Booking
         fields = (
@@ -54,6 +58,7 @@ class BookingSerializer(serializers.ModelSerializer):
             'comment',
             'created_at',
             'updated_at',
+            'has_review',
         )
         read_only_fields = (
             'id',
@@ -190,3 +195,11 @@ class BookingSerializer(serializers.ModelSerializer):
         )
 
         return booking
+    
+    def get_has_review(self, obj):
+        return hasattr(obj, 'review')
+    
+
+class RescheduleBookingSerializer(serializers.Serializer):
+    date = serializers.DateField()
+    start_time = serializers.TimeField()
