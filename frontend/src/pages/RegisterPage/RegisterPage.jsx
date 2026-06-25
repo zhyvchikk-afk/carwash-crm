@@ -53,7 +53,8 @@ function RegisterPage() {
         button.style.setProperty('--x', `${x}px`)
         button.style.setProperty('--y', `${y}px`)
     };
-    
+
+
     return(
         <div className="styles.wrapper">
             <h1 className={styles.title}>Реєстрація</h1>
@@ -113,7 +114,8 @@ function RegisterPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="Необов'язково"
+                        placeholder="mazepa@gmail.com"
+                        required
                     />
                 </label>
                 <label className={styles.label}>

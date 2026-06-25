@@ -98,3 +98,21 @@
     background: #fee2e2;
     color: #dc2626;
 }
+
+.buttonConfirmed {
+    background: #dbeafe;
+    color: #2563eb;
+    font-weight: 700;
+}
+
+.buttonCompleted {
+    background: #dcfce7;
+    color: #16a34a;
+    font-weight: 700;
+}
+
+.buttonCancelled {
+    background: #fee2e2;
+    color: #dc2626;
+    font-weight: 700;
+}

@@ -3,7 +3,7 @@ import styles from './TopClientsCard.module.css'
 function TopClientsCard({ clients }) {
     return (
         <div className={styles.card}>
-            <h2>👑 Топ клієнтів</h2>
+            <h2>👑 ТОП клієнтів</h2>
             <div className={styles.list}>
                 {clients.map((client, index) => (
                     <div

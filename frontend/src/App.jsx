@@ -14,6 +14,9 @@ import AdminBookingsPage from "./pages/AdminBookingsPage/AdminBookingsPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage/AdminDashboardPage";
 import CalendarPage from "./pages/CalendarPage/CalendarPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage/ResetPasswordPage";
+
 
 
 function App() {
@@ -79,6 +82,14 @@ function App() {
         <Route
           path="/admin/calendar"
           element={<CalendarPage />}
+        />
+        <Route
+          path="/forgot-password"
+          element={<ForgotPasswordPage/>}
+        />
+        <Route
+          path="/reset-password/:uid/:token/"
+          element={<ResetPasswordPage/>}
         />
       </Route>
     </Routes>

@@ -1,0 +1,114 @@
+.wrapper {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    overflow: hidden;
+
+    filter: blur(4px);
+}
+
+.wrapper::after {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(78, 78, 78, 0.2);
+}
+
+.wrapper img {
+    position: absolute;
+
+    user-select: none;
+
+    opacity: .8;
+}
+
+.photo111 {
+    top: 2%;
+    left: 12%;
+    transform: rotate(10deg);
+}
+
+.photo1 {
+    top: 12%;
+    left: 4%;
+    transform: rotate(-10deg);
+}
+
+.photo2 {
+    top: 20%;
+    right: 8%;
+    transform: rotate(19deg);
+}
+/* 
+.photo3 {
+    top: 20%;
+    left: 12%;
+} */
+
+.photo4 {
+    top: 33%;
+    right: 15%;
+}
+
+.photo5 {
+    top: 35%;
+    left: 30%;
+}
+
+.photo6 {
+    top: 46%;
+    right: 67%;
+    transform: rotate(25deg);
+}
+
+.photo7 {
+    top: 55%;
+    left: 67%;
+    transform: rotate(-5deg);
+}
+
+.photo8 {
+    top: 60%;
+    left: 14%;
+    transform: rotate(-19deg);
+}
+
+.photo9 {
+    top: 25%;
+    left: 11%;
+}
+
+.photo10 {
+    top: 73%;
+    right: 6%;
+}
+
+.photo11 {
+    top: 73%;
+    left: 11%;
+    transform: rotate(-20deg);
+}
+
+.photo12 {
+    top: 89%;
+    right: 7%;
+    transform: rotate(-5deg);
+}
+
+.photo13 {
+    top: 93%;
+    left: 6%;
+}
+
+.photo14 {
+    top: 5%;
+    right: 14%;
+    transform: rotate(25deg);
+}

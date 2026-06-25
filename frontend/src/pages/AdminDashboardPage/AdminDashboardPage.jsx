@@ -74,7 +74,7 @@ function AdminDashboardPage() {
     return (
         <div className={styles.page}>
             <h1 className={styles.title}>
-                Dashboard
+                Дашборд
             </h1>
 
             <div className={styles.grid}>
@@ -114,28 +114,28 @@ function AdminDashboardPage() {
             </div>
 
             <div className={styles.secondaryGrid}>
-                <div className={styles.smallCard}>
+                <div className={`${styles.smallGrid} ${styles.pendingCard}`}>
                     <span>Очікують</span>
                     <strong>
                         {dashboardData.pending_bookings}
                     </strong>
                 </div>
 
-                <div className={styles.smallGrid}>
+                <div className={`${styles.smallGrid} ${styles.completedCard}`}>
                     <span>Виконано</span>
                     <strong>
                         {dashboardData.completed_bookings}
                     </strong>
                 </div>
 
-                <div className={styles.smallGrid}>
+                <div className={`${styles.smallGrid} ${styles.clientsCard}`}>
                     <span>Клієнтів</span>
                     <strong>
                         {dashboardData.total_clients}
                     </strong>
                 </div>
 
-                <div className={styles.smallGrid}>
+                <div className={`${styles.smallGrid} ${styles.carsCard}`}>
                     <span>Авто</span>
                     <strong>
                         {dashboardData.total_cars}
@@ -184,16 +184,16 @@ function AdminDashboardPage() {
                 />
             </div>
 
-            <div className={styles.bottomGrid}>
-                <div className={styles.table}>
-                    <h2>Останні записи</h2>
-                    <RecentBookingTable
-                        bookings={
-                            dashboardData.recent_bookings
-                        }
-                    />
-                </div>
+            <div className={styles.table}>
+                <h2>Останні записи</h2>
+                <RecentBookingTable
+                    bookings={
+                        dashboardData.recent_bookings
+                    }
+                />
+            </div>
 
+            <div className={styles.bottomGrid}>
                 <TopServicesCard
                     services={
                         dashboardData.top_services

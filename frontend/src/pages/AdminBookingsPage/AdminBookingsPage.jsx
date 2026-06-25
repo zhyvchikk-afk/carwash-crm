@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import api from '../../api/axios'
 
 import styles from './AdminBookingsPage.module.css'
+import { statusLabels } from '../../utils/statusLabels'
 
 
 function AdminBookingsPage() {
     const [bookings, setBookings] = useState([])
     const [error, setError] = useState('')
+
 
     async function loadBookings() {
         try {
@@ -75,7 +77,7 @@ function AdminBookingsPage() {
                                 Час:
                                 {' '}
                                 {booking.start_time}
-                                {' '}
+                                {' - '}
                                 {booking.end_time}
                             </p>
 
@@ -85,7 +87,7 @@ function AdminBookingsPage() {
                                 <strong
                                     className={styles[`status${booking.status}`]}
                                 >
-                                    {booking.status}
+                                    {statusLabels[booking.status]}
                                 </strong>
                             </p>
 
@@ -99,31 +101,34 @@ function AdminBookingsPage() {
 
                         <div className={styles.actions}>
                             <button
+                                className={styles.buttonConfirmed}
                                 type="button"
                                 onClick={() => handleStatusChange(
                                     booking.id,
                                     'confirmed'
                                 )}
                             >
-                                Confirm
+                                Підтвердити
                             </button>
                             <button
+                                className={styles.buttonCompleted}
                                 type="button"
                                 onClick={() => handleStatusChange(
                                     booking.id,
                                     'completed'
                                 )}
                             >
-                                Complete
+                                Завершити
                             </button>
                             <button
+                                className={styles.buttonCancelled}
                                 type="button"
                                 onClick={() => handleStatusChange(
                                     booking.id,
                                     'cancelled'
                                 )}
                             >
-                                Cancel
+                                Відмінити
                             </button>
                         </div>
                     </article>

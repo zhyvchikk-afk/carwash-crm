@@ -1,8 +1,19 @@
+.site {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
 .page {
+    position: relative;
+    z-index: 2;
+
     min-height: 100vh;
 }
 
 .main {
+    position: relative;
+
     max-width: 1200px;
     margin: 0 auto;
     padding: 32px 20px;

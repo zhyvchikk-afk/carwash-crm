@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 import { useAuth } from "../../contexts/AuthContext"
 
@@ -86,6 +86,12 @@ function LoginPage() {
                 >    
                     Увійти
                 </button>
+                <Link
+                    to='/forgot-password'
+                    className={styles.link}    
+                >
+                    Забули пароль?
+                </Link>
             </form>
         </div>
     )
