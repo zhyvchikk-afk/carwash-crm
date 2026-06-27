@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apps.schedule.apps.ScheduleConfig',
     'apps.core.apps.CoreConfig',
     'apps.reviews.apps.ReviewsConfig',
+    'apps.gallery.apps.GalleryConfig',
 ]
 
 MIDDLEWARE = [

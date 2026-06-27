@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from apps.users.models import User
 from apps.bookings.models import Booking
@@ -23,6 +24,20 @@ class Review(models.Model):
     is_published = models.BooleanField(
         default=True,
     )
+
+    admin_reply = models.CharField(
+        blank=True,
+    )
+    replied_at = models.DateTimeField(
+        null=True,
+        blank=True,
+    )
+
+    def save(self, *args, **kwargs):
+        if self.admin_reply and not self.replied_at:
+            self.replied_at = timezone.now()
+
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = (

@@ -11,6 +11,16 @@ class ReviewAdmin(admin.ModelAdmin):
         'rating',
         'is_published',
         'created_at',
+        'replied_at',
+    )
+
+    fields = (
+        'user',
+        'booking',
+        'rating',
+        'text',
+        'admin_reply',
+        'is_published',
     )
 
     list_filter = (

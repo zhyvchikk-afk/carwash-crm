@@ -12,6 +12,7 @@ urlpatterns = [
     path('api/', include('apps.bookings.urls')),
     path('api/', include('apps.core.urls')),
     path('api/', include('apps.reviews.urls')),
+    path('api/gallery/', include('apps.gallery.urls')),
 ]
 
 if settings.DEBUG:

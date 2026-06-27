@@ -2,6 +2,8 @@ from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+from django.utils import timezone
+
 from .models import Review
 from .serializers import (
     ReviewSerializer,
@@ -74,3 +76,53 @@ class CreateReviewView(APIView):
                 'detail': 'Відгук успішно додано.'
             }
         )
+    
+
+class AdminReplyReviewView(APIView):
+    permission_classes = (
+        permissions.IsAdminUser,
+    )
+
+    def patch(self, request, review_id):
+        try:
+            review = Review.objects.get(pk=review_id)
+        except Review.DoesNotExist:
+            return Response(
+                {
+                    'detail': 'Відгук не знайдено.'
+                },
+                status=404,
+            )
+        
+        admin_reply = request.data.get('admin_reply')
+
+        if not admin_reply:
+            return Response(
+                {
+                    'detail': 'Відповідь не може бути порожньою.'
+                },
+                status=404,
+            )
+        
+        review.admin_reply = admin_reply
+        review.replied_at = timezone.now()
+
+        review.save()
+
+        return Response(
+            {
+                'detail': 'Відповідь успішно додана.'
+            }
+        )
+    
+class AdminReviewsView(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = (
+        permissions.IsAdminUser,
+    )
+
+    queryset = (
+        Review.objects
+        .select_related('user')
+        .order_by('-created_at')
+    )

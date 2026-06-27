@@ -10,7 +10,7 @@ import RecentBookingTable from '../../components/RecentBookingsTable/RecentBooki
 import TopServicesCard from "../../components/TopServicesCard/TopServicesCard";
 import StatusPieChart from "../../components/StatusPieChart/StatusPieChart";
 import TopClientsCard from "../../components/TopClientsCard/TopClientsCard";
-
+import RecentReviewsCard from '../../components/RecentReviewsCard/RecentReviewsCard'
 
 
 function AdminDashboardPage() {
@@ -204,6 +204,7 @@ function AdminDashboardPage() {
                     clients={dashboardData.top_clients}
                 />
             </div>
+            <RecentReviewsCard />
             <StatusPieChart
                 pending={dashboardData.pending_bookings}
                 confirmed={dashboardData.confirmed_bookings}

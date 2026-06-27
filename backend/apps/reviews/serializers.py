@@ -9,6 +9,10 @@ class ReviewSerializer(serializers.ModelSerializer):
         read_only=True,
     )
 
+    admin_reply = serializers.CharField(
+        read_only=True,
+    )
+
     class Meta:
         model = Review
 
@@ -18,6 +22,8 @@ class ReviewSerializer(serializers.ModelSerializer):
             'rating',
             'text',
             'created_at',
+            'replied_at',
+            'admin_reply',
         )
 
 

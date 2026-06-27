@@ -7,6 +7,8 @@ import api from '../../api/axios'
 import styles from './HomePage.module.css'
 import { FaInstagram } from 'react-icons/fa'
 
+import GallerySection from '../../components/GallerySection/GallerySection'
+
 function HomePage() {
     const { user, isAuthenticated } = useAuth()
 
@@ -193,6 +195,7 @@ function HomePage() {
                     </a>
                 </div>
             </section>
+            <GallerySection />
             <section className={styles.howItWorks}>
                 <h2 className={styles.sectionTitle}>
                     Як це працює?
@@ -308,9 +311,15 @@ function HomePage() {
                                     </span>
                                 </div>
                             </div>
-                            <p>
+                            <p className={styles.reviewText}>
                                 {review.text}
                             </p>
+                            {review.admin_reply && (
+                                <div className={styles.adminReply}>
+                                    <strong>Відповідь адміністратора</strong>
+                                    <p>{review.admin_reply}</p>
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
